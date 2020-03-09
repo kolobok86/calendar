@@ -1,0 +1,8 @@
+.year__months {
+  display: flex;
+  min-width: 700px;
+}
+
+.month {
+  width: 33%;
+}
