@@ -9,14 +9,9 @@ function getMonthTitle(month: number, locale: string): string {
   // ToDo define proper type
   const _staticData: any = staticData;
 
-  // months are stored in arrays, thus starting enumeratin from '0',
+  // Months are stored in arrays, thus starting enumeratin from '0',
   // and month numbers usually are enumerated starting from 1
-
-  const months = _staticData[locale];
-  const monthNum = month - 1;
-  const monthTitle = months[monthNum];
-
-  return monthTitle;
+  return _staticData[locale].months[month - 1];
 }
 
 interface Props {
