@@ -6,4 +6,13 @@
 
 .month {
   width: 33%;
+  border: 1px dotted #c0c0c0;
+}
+
+.month__week {
+  display: flex;
+}
+
+.week__day {
+  width: 14%;
 }
