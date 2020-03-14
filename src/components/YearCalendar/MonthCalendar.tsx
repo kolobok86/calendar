@@ -41,7 +41,7 @@ function MonthCalendar(props: Props) {
   const firstWeekDaysOffset = (DAYS_IN_WEEK + (firstMonthDayOfWeek - WEEK_STARTS_ON_DAY)) % DAYS_IN_WEEK;
 
   // (c) https://www.w3resource.com/javascript-exercises/javascript-date-exercise-3.php
-  const daysInMonth = new Date(props.year, zeroBasedMonth, 0).getDate();
+  const daysInMonth = new Date(props.year, zeroBasedMonth + 1, 0).getDate();
   const monthWeeks: Array<React.ReactNode> = [];
   // let w = 0;
   let weekDays: Array<React.ReactNode> = [];
