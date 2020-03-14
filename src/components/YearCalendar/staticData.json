@@ -13,6 +13,15 @@
       "October",
       "November",
       "December"
+    ],
+    "daysOfWeekNames": [
+      "Sun.",
+      "Mon.",
+      "Tue.",
+      "Wed.",
+      "Thu.",
+      "Fri.",
+      "Sat."
     ]
   },
   "ru": {
@@ -29,6 +38,15 @@
       "Октябрь",
       "Ноябрь",
       "Декабрь"
+    ],
+    "daysOfWeekNames": [
+      "Вс.",
+      "Пн.",
+      "Вт.",
+      "Ср.",
+      "Чт.",
+      "Пт.",
+      "Сб."
     ]
   }
 }

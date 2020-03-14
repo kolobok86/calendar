@@ -36,41 +36,68 @@ function MonthCalendar(props: Props) {
 
   const firstDayDate = new Date(props.year, zeroBasedMonth, 1);
 
+  // Which day of week is 1st day of the month
   const firstMonthDayOfWeek = firstDayDate.getDay();
 
-  const firstWeekDaysOffset = (DAYS_IN_WEEK + (firstMonthDayOfWeek - WEEK_STARTS_ON_DAY)) % DAYS_IN_WEEK;
+  const firstDayOfWeekOffset = (DAYS_IN_WEEK + (firstMonthDayOfWeek - WEEK_STARTS_ON_DAY)) % DAYS_IN_WEEK;
 
   // (c) https://www.w3resource.com/javascript-exercises/javascript-date-exercise-3.php
   const daysInMonth = new Date(props.year, zeroBasedMonth + 1, 0).getDate();
   const monthWeeks: Array<React.ReactNode> = [];
-  // let w = 0;
-  let weekDays: Array<React.ReactNode> = [];
-  for (let i = -firstWeekDaysOffset + 1; i <= daysInMonth; i++) {
-    // if (w === 0) {
-    // }
-    weekDays.push(
-      <div className={'week__day'}>
+  // As od English grammar, days of week - all days, while weekdays - work days only
+  let daysOfWeek: Array<React.ReactNode> = [];
+  let weekInd = 0;
+
+  for (let i = -firstDayOfWeekOffset + 1; i <= daysInMonth; i++) {
+    let dayOfWeekInd = 0;
+    daysOfWeek.push(
+      <div className={'week__day'} key={dayOfWeekInd}>
         { (i <= 0) ? '' : i.toString() }
       </div>
     );
-    // w++;
 
-    if (weekDays.length === DAYS_IN_WEEK || i === daysInMonth) {
+    if (daysOfWeek.length === DAYS_IN_WEEK || i === daysInMonth) {
       monthWeeks.push(
-        <div className={'month__week'}>
-          {weekDays}
+        <div className={'month__week'} key={weekInd++}>
+          {daysOfWeek}
         </div>
       );
 
-      weekDays = [];    // new clean array
+      daysOfWeek = [];    // new clean array
     };
+  }
+
+  function renderDaysOfWeekNames() {
+    const daysOfWeekNames: Array<React.ReactNode> = [];
+    // ToDo again, type staticData properly
+    const _staticData: any = staticData;
+
+    for (let i = 0; i < DAYS_IN_WEEK; i++) {
+      const dayOfWeekInd = ((WEEK_STARTS_ON_DAY + i) < DAYS_IN_WEEK)
+        ? WEEK_STARTS_ON_DAY + i
+        : WEEK_STARTS_ON_DAY + i - DAYS_IN_WEEK;
+
+        daysOfWeekNames.push(
+        <div className={'week__day dayOfWeek-name'} key={dayOfWeekInd}>
+          <span className={'dayOfWeek-name__label'}>
+            {_staticData[props.locale].daysOfWeekNames[dayOfWeekInd]}
+          </span>
+        </div>
+      );
+    }
+
+    return (
+      <div className={'daysOfWeek-names'}>
+        {daysOfWeekNames}
+      </div>
+    );
   }
 
   return (
     <div className={'month' + propsClassName}>
-      <h4>{monthTitle}</h4>
+      <h4 className={'month__name'}>{monthTitle}</h4>
       <div className={'month__header'}>
-        <div className={'month__header__day-name'}></div>
+        {renderDaysOfWeekNames()}
       </div>
       <div className={'month__weeks'}>
         {monthWeeks}

@@ -7,6 +7,12 @@
 .month {
   width: 33%;
   border: 1px dotted #c0c0c0;
+
+  box-sizing: border-box;
+}
+
+.month__name {
+  margin: 15px auto;
 }
 
 .month__week {
@@ -15,4 +21,20 @@
 
 .week__day {
   width: 14%;
+  padding: 5px 0;
+}
+
+.daysOfWeek-names {
+  display: flex;
+  border-top: 1px solid #c0c0c0;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.dayOfWeek-name {
+  margin: 10px 0;
+  padding: 0;
+}
+
+.dayOfWeek-name__label {
+  font-style: italic;
 }
