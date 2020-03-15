@@ -15,7 +15,7 @@ export default function YearCalendar({year, locale = 'en', children = null, ...o
   const months: Array<React.ReactNode> = [];
   for (let i = 1; i <= 12; i++) {
     months.push(
-      <MonthCalendar year={year} locale={locale} month={i} />
+      <MonthCalendar year={year} locale={locale} month={i} key={`year_${year}_month_${i}`} />
     );
   }
 

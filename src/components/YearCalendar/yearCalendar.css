@@ -24,6 +24,14 @@
   padding: 5px 0;
 }
 
+.week__day--sat {
+  color: pink;
+}
+
+.week__day--sun {
+  color: red;
+}
+
 .daysOfWeek-names {
   display: flex;
   border-top: 1px solid #c0c0c0;

@@ -24,7 +24,10 @@ interface Props {
 
 const WEEK_STARTS_ON_DAY = 1;   // 0 - Sunday, 1 - Monday, as of JavaScript getDay()
 
-const DAYS_IN_WEEK = 7;     //
+const DAYS_IN_WEEK = 7;   // yup obvious...
+
+const WEEKEND_SAT = 6;  // Saturday and Sunday number due to JS Date.getDay() semantics
+const WEEKEND_SUN = 0;
 
 
 function MonthCalendar(props: Props) {
@@ -49,19 +52,40 @@ function MonthCalendar(props: Props) {
   let weekInd = 0;
 
   for (let i = -firstDayOfWeekOffset + 1; i <= daysInMonth; i++) {
-    let dayOfWeekInd = 0;
+
+    // Add special class to Saturday and Sunday
+    const dayOfWeekToBeAdded = (WEEK_STARTS_ON_DAY + daysOfWeek.length) % 7;
+    const isWeekendSat = dayOfWeekToBeAdded === 6;
+    const isWeekendSun = dayOfWeekToBeAdded % 7 === 0;
+
+    let weekendClassName;
+    switch (true) {
+      case isWeekendSat:
+        weekendClassName = ' week__day--sat';
+        break;
+      case isWeekendSun:
+        weekendClassName = ' week__day--sun';
+        break;
+      default:
+        weekendClassName = '';
+    }
+
     daysOfWeek.push(
-      <div className={'week__day'} key={dayOfWeekInd}>
+      <div
+        className={'week__day' + weekendClassName}
+        key={`month_${props.month}_day_${i}`}
+      >
         { (i <= 0) ? '' : i.toString() }
       </div>
     );
 
     if (daysOfWeek.length === DAYS_IN_WEEK || i === daysInMonth) {
       monthWeeks.push(
-        <div className={'month__week'} key={weekInd++}>
+        <div className={'month__week'} key={`month_${props.month}_week_${weekInd}`}>
           {daysOfWeek}
         </div>
       );
+      weekInd++;
 
       daysOfWeek = [];    // new clean array
     };
