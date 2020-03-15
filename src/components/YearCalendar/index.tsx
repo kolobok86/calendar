@@ -21,10 +21,12 @@ export default function YearCalendar({year, locale = 'en', children = null, ...o
 
   // ToDo put locale to React Context
   return (
-    <div className={'year ' + other.className} {...other} >
+    <div className={'year ' + (other.className || '')} {...other} >
       <h4>{year.toString()}</h4>
-      <div className={'year__months'}>
-        {months}
+      <div className={'year__months__container'}>
+        <div className={'year__months'}>
+          {months}
+        </div>
       </div>
     </div>
   )

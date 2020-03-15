@@ -1,13 +1,18 @@
+.year__months__container {
+  display: flex;
+  justify-content: center;
+}
+
 .year__months {
   display: flex;
   flex-wrap: wrap;
-  min-width: 700px;
+  /* min-width: 700px; */
+  justify-content: center;
 }
 
 .month {
-  width: 33%;
+  width: 33.33%;
   border: 1px dotted #c0c0c0;
-
   box-sizing: border-box;
 }
 
