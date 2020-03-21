@@ -37,6 +37,10 @@
   color: red;
 }
 
+.week__day--holiday {
+  color: orange;
+}
+
 .daysOfWeek-names {
   display: flex;
   border-top: 1px solid #c0c0c0;

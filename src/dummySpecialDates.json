@@ -1,0 +1,14 @@
+{
+  "1": {
+    "1": {
+      "className": "week__day--holiday",
+      "tooltip": "Some holiday!"
+    }
+  },
+  "3": {
+    "9": {
+      "className": "week__day--holiday",
+      "tooltip": "Shift holiday for March, 8"
+    }
+  }
+}

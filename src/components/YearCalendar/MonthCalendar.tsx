@@ -19,19 +19,28 @@ interface Props {
   month: number,    // 0 ... 11, as of JavaScript
   locale: string,
   className?: string,
+  monthHighlightedDates?: MonthHighlightedDates,
 }
 
+export type MonthHighlightedDates = {
+  [monthDay: number]: HighlightedDate,
+}
+
+interface HighlightedDate {
+  className?: string,
+  tooltip?: string
+}
 
 const WEEK_STARTS_ON_DAY = 1;   // 0 - Sunday, 1 - Monday, as of JavaScript getDay()
 
 const DAYS_IN_WEEK = 7;   // yup obvious...
 
-const WEEKEND_SAT = 6;  // Saturday and Sunday number due to JS Date.getDay() semantics
+const WEEKEND_SAT = 6;    // Saturday and Sunday number due to JS Date.getDay() semantics
 const WEEKEND_SUN = 0;
 
 
-function MonthCalendar(props: Props) {
-  const propsClassName: string = (!!props.className) ? ' ' + props.className : '';
+function MonthCalendar (props: Props) {
+  const propsClassName: string = (props.className) ? ' ' + props.className : '';
 
   const monthTitle = getMonthTitle(props.month, props.locale);
 
@@ -70,10 +79,17 @@ function MonthCalendar(props: Props) {
         weekendClassName = '';
     }
 
+    const { monthHighlightedDates } = props;
+    const highlightClassName = (monthHighlightedDates?.[i]?.className)
+        ? ' ' + monthHighlightedDates?.[i]?.className
+        : '';
+    const tooltip = monthHighlightedDates?.[i]?.tooltip;
+
     daysOfWeek.push(
       <div
-        className={'week__day' + weekendClassName}
+        className={'week__day' + weekendClassName + highlightClassName}
         key={`month_${props.month}_day_${i}`}
+        title={ tooltip }
       >
         { (i <= 0) ? '' : i.toString() }
       </div>
