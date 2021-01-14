@@ -64,7 +64,9 @@ function MonthCalendar (props: Props) {
 
     // Add special class to Saturday and Sunday
     const dayOfWeekToBeAdded = (WEEK_STARTS_ON_DAY + daysOfWeek.length) % 7;
-    const isWeekendSat = dayOfWeekToBeAdded === 6;
+    const isWeekendSat = dayOfWeekToBeAdded === WEEKEND_SAT;
+    // "% 7" serves same purpose as "dayOfWeekToBeAdded === 7 || dayOfWeekToBeAdded === 0", but looks much greater!
+    // And yes, 7 means WEEKEND_SUN
     const isWeekendSun = dayOfWeekToBeAdded % 7 === 0;
 
     let weekendClassName;
